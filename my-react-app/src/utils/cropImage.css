@@ -1,0 +1,75 @@
+/* Cropping UI container */
+.crop-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background: #333;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* EasyCrop library target */
+  .crop-container .reactEasyCrop_CropArea {
+    border-radius: 8px;
+  }
+  
+  /* Controls below cropper (Zoom Slider + Button) */
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .controls .MuiSlider-root {
+    width: 150px;
+    color: #007bff;
+  }
+  
+  .controls button {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  
+  .controls button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Cropped image preview */
+  .preview {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+  
+  .preview .cropped-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+  }
+  
+  .preview button {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .preview button:hover {
+    background-color: #5a6268;
+  }
+  

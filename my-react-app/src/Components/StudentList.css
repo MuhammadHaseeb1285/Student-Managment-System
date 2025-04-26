@@ -1,0 +1,235 @@
+/* Student List Styles */
+.student-list {
+    padding: 2rem;
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9f5ff 100%);
+    min-height: 100vh;
+  }
+  
+  .student-list h2 {
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+    font-size: 2rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  .student-list h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #9b59b6);
+    border-radius: 2px;
+  }
+  
+  /* Table styles */
+  .table-container {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    background: white;
+    margin-bottom: 2rem;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  thead th {
+    background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%);
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+  }
+  
+  thead th.sortable {
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  thead th.sortable:hover {
+    background: linear-gradient(135deg, #2980b9 0%, #27ae60 100%);
+  }
+  
+  tbody td {
+    padding: 1rem;
+    border-bottom: 1px solid #e0e6ed;
+    color: #4a5568;
+  }
+  
+  /* Alternating row background */
+  tbody tr:nth-child(odd) {
+    background-color: rgba(241, 245, 249, 0.5);
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: white;
+  }
+  
+  tbody tr:hover {
+    background-color: #f0f7ff;
+  }
+  
+  /* Action links */
+  .action-cell {
+    display: flex;
+    gap: 0.8rem;
+  }
+  
+  .action-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .action-link.view {
+    background-color: #3498db;
+  }
+  
+  .action-link.edit {
+    background-color: #f39c12;
+  }
+  
+  .action-link.delete {
+    background-color: #e74c3c;
+  }
+  
+  .action-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .action-link:active {
+    transform: translateY(0);
+  }
+  
+  /* Pagination Controls */
+  .pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+  }
+  
+  .pagination-info {
+    color: #4a5568;
+    font-weight: 500;
+    
+  }
+  
+  .pagination {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    
+  }
+  
+  .pagination-button {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border: none;
+    background: linear-gradient(135deg, #3498db 0%, #9b59b6 100%);
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    
+    margin-bottom: 10px;
+  }
+  
+  .pagination-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+  }
+  
+  .pagination-button:disabled {
+    background: #ddd;
+    color: #999;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .page-number {
+    font-weight: 600;
+    margin: 0 0.5rem;
+  }
+  
+  /* Pagination button arrows */
+  .pagination-button.prev,
+  .pagination-button.next {
+    padding: 0.6rem 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .pagination-button.prev svg,
+  .pagination-button.next svg {
+    font-size: 1.2rem;
+    margin-left: 5px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .student-list {
+      padding: 1rem;
+    }
+  
+    .table-container {
+      overflow-x: auto;
+    }
+  
+    table {
+      min-width: 700px;
+    }
+  
+    .pagination-container {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  tbody tr {
+    animation: fadeIn 0.3s ease forwards;
+    opacity: 0;
+  }
+  
+  /* Create staggered animation */
+  tbody tr:nth-child(1) { animation-delay: 0.1s; }
+  tbody tr:nth-child(2) { animation-delay: 0.2s; }
+  tbody tr:nth-child(3) { animation-delay: 0.3s; }
+  tbody tr:nth-child(4) { animation-delay: 0.4s; }
+  tbody tr:nth-child(5) { animation-delay: 0.5s; }
+  tbody tr:nth-child(6) { animation-delay: 0.6s; }
+  tbody tr:nth-child(7) { animation-delay: 0.7s; }
+  tbody tr:nth-child(8) { animation-delay: 0.8s; }
+  tbody tr:nth-child(9) { animation-delay: 0.9s; }
+  tbody tr:nth-child(10) { animation-delay: 1.0s; }
+  
