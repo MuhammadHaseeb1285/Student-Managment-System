@@ -80,6 +80,38 @@ body{
 .photo-selector {
   margin: 0 auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.camera-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #ecf0f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+.camera-circle img,
+.camera-circle .reactEasyCrop_CropArea {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.camera-circle .reactEasyCrop_CropArea {
+  border-radius: 50% !important;
+}
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  justify-content: center;
 }
 
 /* When image is uploaded, show preview/edit to the right of icon */

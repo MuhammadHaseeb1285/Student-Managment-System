@@ -3,6 +3,20 @@ import axios from 'axios';
 import './StudentList.css';
 import { useNavigate } from 'react-router-dom';
 
+// Helper to format date as MM/DD/YYYY
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  if (isNaN(d)) return dateStr;
+  return (
+    (d.getMonth() + 1).toString().padStart(2, '0') +
+    '/' +
+    d.getDate().toString().padStart(2, '0') +
+    '/' +
+    d.getFullYear()
+  );
+}
+
 const StudentList = () => {
   const navigate = useNavigate();
 
@@ -52,7 +66,7 @@ const StudentList = () => {
       <table>
         <thead>
           <tr>
-            <th>ID</th><th>Name</th><th>Roll Number</th><th>Department</th><th>Degree</th>
+            <th>ID</th><th>Photo</th><th>Name</th><th>Roll Number</th><th>Department</th><th>Degree</th>
             <th>DOB</th><th>City</th><th>Interest</th><th>Actions</th>
           </tr>
         </thead>
@@ -60,11 +74,18 @@ const StudentList = () => {
           {students.map(stu => (
             <tr key={stu.id}>
               <td>{stu.id}</td>
+              <td>
+                {stu.photo ? (
+                  <img src={`http://localhost:5000${stu.photo}`} alt="Student" style={{width:40, height:40, borderRadius:'50%', objectFit:'cover'}} />
+                ) : (
+                  <div style={{width:40, height:40, borderRadius:'50%', background:'#eee', display:'flex', alignItems:'center', justifyContent:'center', color:'#aaa', fontSize:'1.5rem'}}>?</div>
+                )}
+              </td>
               <td>{stu.full_name}</td>
               <td>{stu.roll_number}</td>
               <td>{stu.department}</td>
               <td>{stu.degree_title}</td>
-              <td>{stu.dob}</td>
+              <td>{formatDate(stu.dob)}</td>
               <td>{stu.city}</td>
               <td>{stu.interest}</td>
               <td className="action-cell">

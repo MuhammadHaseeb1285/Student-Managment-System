@@ -137,7 +137,8 @@ app.delete('/api/students/:id', (req, res) => {
 // Set up storage for uploaded images
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/');
+    // Save to my-react-app/src/uploads
+    cb(null, path.join(__dirname, '../my-react-app/src/uploads'));
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -146,9 +147,8 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-
 // Serve static files from uploads
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, '../my-react-app/src/uploads')));
 
 // POST /api/students (with file upload)
 app.post('/api/students', upload.single('photo'), (req, res) => {
@@ -172,7 +172,7 @@ app.post('/api/students', upload.single('photo'), (req, res) => {
     return res.status(400).json({ error: 'Full name and roll number are required.' });
   }
 
-  // Store only the path to the uploaded image
+  // Store only the relative path to the uploaded image
   let photoPath = null;
   if (req.file) {
     photoPath = '/uploads/' + req.file.filename;

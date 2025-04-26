@@ -142,33 +142,10 @@ const AddStudentForm = () => {
         {/* Image upload and preview at top, centered and side-by-side */}
         <div className="image-row">
           <div className="image-upload-flex">
-            {/* Upload icon always visible */}
             <div className="photo-selector">
-              <div
-                className="camera-circle"
-                onClick={() => fileInputRef.current.click()}
-                style={{ cursor: 'pointer' }}
-              >
-                {croppedImage ? (
-                  <img src={croppedImage} alt="Cropped" className="circle-img" />
-                ) : (
-                  <PhotoCameraIcon fontSize="large" />
-                )}
-              </div>
-              <input
-                type="file"
-                accept="image/*"
-                ref={fileInputRef}
-                style={{ display: 'none' }}
-                onChange={onFileChange}
-              />
-            </div>
-
-            {/* Crop/edit UI to the right of icon */}
-            <div style={{ minWidth: 220 }}>
-              {/* Crop UI when image selected and not confirmed */}
-              {imageSrc && !isDone && (
-                <div className="crop-container">
+              {/* Show cropper in the circle if cropping, else show image or camera icon */}
+              <div className="camera-circle" onClick={() => !imageSrc && fileInputRef.current.click()} style={{ cursor: 'pointer', position: 'relative' }}>
+                {imageSrc && !isDone ? (
                   <Cropper
                     image={imageSrc}
                     crop={crop}
@@ -177,45 +154,50 @@ const AddStudentForm = () => {
                     onCropChange={setCrop}
                     onZoomChange={setZoom}
                     onCropComplete={onCropComplete}
+                    cropShape="round"
+                    showGrid={false}
                   />
-                  <div className="controls">
-                    <Slider
-                      value={zoom}
-                      min={1}
-                      max={3}
-                      step={0.1}
-                      onChange={(e, z) => setZoom(z)}
-                    />
-                    <button
-                      type="button"
-                      className="action-button"
-                      onClick={createCroppedImage}
-                    >
-                      Crop
-                    </button>
-                  </div>
+                ) : croppedImage ? (
+                  <img src={croppedImage} alt="Cropped Preview" className="circle-img" />
+                ) : (
+                  <PhotoCameraIcon fontSize="large" style={{ color: '#888' }} />
+                )}
+                <input
+                  type="file"
+                  accept="image/*"
+                  ref={fileInputRef}
+                  style={{ display: 'none' }}
+                  onChange={onFileChange}
+                />
+              </div>
+              {/* Controls below the circle */}
+              {imageSrc && !isDone && (
+                <div className="controls" style={{ marginTop: 8 }}>
+                  <Slider
+                    value={zoom}
+                    min={1}
+                    max={3}
+                    step={0.1}
+                    onChange={(e, z) => setZoom(z)}
+                  />
+                  <button
+                    type="button"
+                    className="action-button"
+                    onClick={createCroppedImage}
+                  >
+                    Done
+                  </button>
                 </div>
               )}
-              {/* Edit/Done button when cropped image exists */}
-              {croppedImage && (
-                <div className="preview-block">
-                  {!isDone ? (
-                    <button
-                      type="button"
-                      className="action-button"
-                      onClick={createCroppedImage}
-                    >
-                      Done
-                    </button>
-                  ) : (
-                    <button
-                      type="button"
-                      className="action-button"
-                      onClick={() => setIsDone(false)}
-                    >
-                      Edit
-                    </button>
-                  )}
+              {croppedImage && isDone && (
+                <div className="controls" style={{ marginTop: 8 }}>
+                  <button
+                    type="button"
+                    className="action-button"
+                    onClick={() => setIsDone(false)}
+                  >
+                    Edit
+                  </button>
                 </div>
               )}
             </div>

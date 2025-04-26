@@ -56,7 +56,7 @@ const ViewStudent = () => {
       <div className="student-details">
         {displayMap.photo && (
           <div className="photo-preview-block">
-            <img src={displayMap.photo} alt="Student" className="circle-img" style={{width:120, height:120, borderRadius:'50%', objectFit:'cover', marginBottom:'1rem'}} />
+            <img src={`http://localhost:5000${displayMap.photo}`} alt="Student" className="circle-img" style={{width:120, height:120, borderRadius:'50%', objectFit:'cover', marginBottom:'1rem'}} />
           </div>
         )}
         <p><strong>Full Name:</strong> {displayMap.fullName}</p>
